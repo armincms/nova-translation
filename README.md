@@ -11,6 +11,7 @@ step 2:
 
 step 3: 
 	Register `Armincms\NovaTranslation\Translation` resource.
+	
 	```
 	Nova::resources([
 		\Armincms\NovaTranslation\Translation
