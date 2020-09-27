@@ -1,0 +1,29 @@
+{
+    "name": "armincms/nova-translation",
+    "description": "Nova implementation of the `armincms/database-localization`.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "armincms/database-localization": "~0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Armincms\\NovaTranslation\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [ 
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
