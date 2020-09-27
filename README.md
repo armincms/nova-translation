@@ -14,7 +14,9 @@ Nova implementation of the `armincms/database-localization` package
 - step 3: 
 
 	Finally register the `Armincms\NovaTranslation\Translation` resource.
-
+	
+	```
 	Nova::resources([
 		\Armincms\NovaTranslation\Translation
 	]) 
+	```
