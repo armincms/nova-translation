@@ -20,10 +20,10 @@ class Replacements implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
-        if(empty($value)) return true;
-        
+    { 
         preg_match_all('/^\:[^\s\:]+/', $this->key, $matches);
+
+        if(empty($value) || empty($matches[0])) return true; 
 
         return collect($matches)->pluck(0)->filter(function($matched) use ($value) {
             return ! Str::contains($value, $matched);
