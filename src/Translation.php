@@ -22,7 +22,7 @@ class Translation extends Model
      */
     public function getTable()
     {
-        return config('database-localization.database');
+        return config('database-localization.database', 'database_localization');
     }
 
     public function setGroupAttribute(string $group = null)
