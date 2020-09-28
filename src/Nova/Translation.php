@@ -48,17 +48,19 @@ class Translation extends Resource
 
             Text::make(__('Translation Group'), 'group')
                 ->readonly($request->isUpdateOrUpdateAttachedRequest())
-                ->sortable(),
+                ->sortable()
+                ->onlyOnForms(),
 
             Text::make(__('Translation Namespace'), 'namespace')
                 ->readonly($request->isUpdateOrUpdateAttachedRequest())
-                ->sortable(),
+                ->sortable()
+                ->onlyOnForms(),
 
             new Panel(__('Translations'), function() {
-                return collect(static::getLocales())->map(function($label, $locale) {
+                return static::sortedLocales()->map(function($label, $locale) {
                     return Text::make($label, "text->{$locale}")
-                                ->nullable(true, ['', null])
-                                ->onlyOnForms($locale !== app()->getLocale())
+                                ->nullable(true, ['', null]) 
+                                ->hideFromIndex($locale !== app()->getLocale())
                                 ->updateRules(new Rules\Replacements(request('key') ?? $this->key));
                 });
             }),
@@ -88,6 +90,26 @@ class Translation extends Resource
             'en' => __('English'),
         ];
     } 
+
+    /**
+     * Get the sorted locales.
+     * 
+     * @return \Illuminate\Support\Collection
+     */
+    public function sortedLocales()
+    {
+        return collect(static::getLocales())->sortBy(function($label, $locale) {
+            if($locale == config('database-localization.locale', 'en')) {
+                return 0;
+            }
+
+            if($locale == app()->getLocale()) {
+                return 1;
+            }
+
+            return time();
+        });
+    }
 
     /**
      * Determine if the current user can delete the given resource or throw an exception.
