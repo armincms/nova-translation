@@ -4,7 +4,7 @@ namespace Armincms\NovaTranslation\Nova;
 
 use Illuminate\Http\Request; 
 use Laravel\Nova\Panel;
-use Laravel\Nova\Resource
+use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\{ID, Text}; 
 
 class Translation extends Resource
