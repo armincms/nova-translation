@@ -8,7 +8,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "armincms/database-localization": "~0.1"
+        "armincms/database-localization": "~0.2"
     },
     "autoload": {
         "psr-4": {

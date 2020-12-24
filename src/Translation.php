@@ -2,7 +2,8 @@
 
 namespace Armincms\NovaTranslation;
 
-use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Database\Eloquent\Model;
+use Armincms\DatabaseLocalization\{Store, Cacheable};
 
 class Translation extends Model
 {  
@@ -14,6 +15,26 @@ class Translation extends Model
     protected $casts = [
     	'text' => 'json',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function($model) {
+            $store = app(Store::class); 
+
+            if($store instanceof Cacheable) {
+                foreach ($model->text as $locale => $value) {
+                    $store->forget($locale, $model->group, $model->namespace);
+                } 
+            }
+        });
+    }
 
     /**
      * Get the table associated with the model.
