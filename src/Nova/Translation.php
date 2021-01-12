@@ -14,7 +14,7 @@ class Translation extends Resource
      *
      * @var string
      */
-    public static $model = \Armincms\NovaTranslation\Translation::class;
+    public static $model = \Spatie\TranslationLoader\LanguageLine::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -43,18 +43,16 @@ class Translation extends Resource
         return [ 
             Text::make(__('Translation Key'), 'key')
                 ->readonly($request->isUpdateOrUpdateAttachedRequest())
-                ->sortable()
-                ->creationRules(new Rules\UniqueKeys),
+                ->sortable(),
 
             Text::make(__('Translation Group'), 'group')
                 ->readonly($request->isUpdateOrUpdateAttachedRequest())
+                ->onlyOnForms()
                 ->sortable()
-                ->onlyOnForms(),
-
-            Text::make(__('Translation Namespace'), 'namespace')
-                ->readonly($request->isUpdateOrUpdateAttachedRequest())
-                ->sortable()
-                ->onlyOnForms(),
+                ->nullable()
+                ->fillUsing(function($request, $model, $attribute) {
+                    $model->group = $request->get($attribute) ?? '*';
+                }), 
 
             new Panel(__('Translations'), function() {
                 return static::sortedLocales()->map(function($label, $locale) {
@@ -109,29 +107,5 @@ class Translation extends Resource
 
             return time();
         });
-    }
-
-    /**
-     * Determine if the current user can delete the given resource or throw an exception.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function authorizeToDelete(Request $request)
-    {
-        return false;
-    }
-
-    /**
-     * Determine if the current user can delete the given resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorizedToDelete(Request $request)
-    {
-        return false;
     }
 }
