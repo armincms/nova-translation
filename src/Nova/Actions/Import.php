@@ -59,7 +59,11 @@ class Import extends DetachedAction
             File::make('Translations', 'translations')
                 ->acceptedTypes('application/json')
                 ->required()
-                ->rules('required', 'mimes:json'),
+                ->rules(['required', function($attribute, $file, $fail) {
+                    if ('application/json' != $file->getClientMimeType()) {
+                        $fail('The translations should be file type of application/json');
+                    } 
+                }]),
 
             Boolean::make(__('Override'), 'override', function() {
                 return false;
