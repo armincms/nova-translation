@@ -12,6 +12,7 @@ class CreateLanguageLinesTable extends Migration
      */
     public function up()
     {
+        Schema::hasTable('language_lines') || 
         Schema::create('language_lines', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('group')->default('*')->index();
