@@ -33,6 +33,13 @@ class Translation extends Resource
     ]; 
 
     /**
+     * The available locales.
+     *
+     * @var array
+     */
+    public static $locales = []; 
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
