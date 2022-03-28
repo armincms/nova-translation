@@ -90,7 +90,7 @@ class Translation extends Resource
      */
     public static function getLocales() : array
     {
-        return static::$locales ?? [
+        return static::$locales ?: [
             'fa' => __('Persian'),
             'en' => __('English'),
         ];
