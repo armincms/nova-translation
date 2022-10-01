@@ -2,12 +2,11 @@
 
 namespace Armincms\NovaTranslation;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Console\Events\ArtisanStarting;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Laravel\Nova\Events\ServingNova;
-
 
 class ServiceProvider extends LaravelServiceProvider implements DeferrableProvider
 {
@@ -18,7 +17,7 @@ class ServiceProvider extends LaravelServiceProvider implements DeferrableProvid
      */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         Gate::policy(\Spatie\TranslationLoader\LanguageLine::class, Policies\Translation::class);
     }
 

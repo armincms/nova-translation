@@ -12,7 +12,7 @@ class Export extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields 
+     * @param  \Laravel\Nova\Fields\ActionFields  $fields
      * @return mixed
      */
     public function handle(ActionFields $fields)
@@ -25,7 +25,7 @@ class Export extends Action
             })->merge($translations);
         });
 
-        \Storage::disk('public')->put($filename = time() . '.json', $translations->toJson(JSON_PRETTY_PRINT));
+        \Storage::disk('public')->put($filename = time().'.json', $translations->toJson(JSON_PRETTY_PRINT));
 
         return static::download(\Storage::disk('public')->url($filename), 'Translations.json');
     }

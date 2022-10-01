@@ -14,7 +14,7 @@ class Import extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields 
+     * @param  \Laravel\Nova\Fields\ActionFields  $fields
      * @return mixed
      */
     public function handle(ActionFields $fields)
@@ -27,7 +27,7 @@ class Import extends Action
 
         LanguageLine::insert(collect($translations)->map(function ($translation) {
             return array_merge($translation, [
-                'text' => json_encode($translation['text'])
+                'text' => json_encode($translation['text']),
             ]);
         })->all());
 

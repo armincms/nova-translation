@@ -3,9 +3,9 @@
 namespace Armincms\NovaTranslation\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\{ID, Text};
 
 class Translation extends Resource
 {
@@ -29,7 +29,7 @@ class Translation extends Resource
      * @var array
      */
     public static $search = [
-        'key', 'text'
+        'key', 'text',
     ];
 
     /**
@@ -74,8 +74,8 @@ class Translation extends Resource
 
     /**
      * Set the available locales.
-     * 
-     * @param array $locales
+     *
+     * @param  array  $locales
      * @return  static
      */
     public static function setLocales(array $locales)
@@ -85,7 +85,7 @@ class Translation extends Resource
 
     /**
      * Get the avaialabe locales.
-     * 
+     *
      * @return array
      */
     public static function getLocales(): array
@@ -98,7 +98,7 @@ class Translation extends Resource
 
     /**
      * Get the sorted locales.
-     * 
+     *
      * @return \Illuminate\Support\Collection
      */
     public function sortedLocales()

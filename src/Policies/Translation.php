@@ -1,15 +1,15 @@
 <?php
 
 namespace Armincms\NovaTranslation\Policies;
- 
-use Illuminate\Contracts\Auth\Authenticatable as User;
+
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Contracts\Auth\Authenticatable as User;
 use Illuminate\Database\Eloquent\Model;
 
 class Translation
 {
-    use HandlesAuthorization; 
- 
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can create given models.
      *
@@ -43,5 +43,5 @@ class Translation
     public function delete(User $user, Model $model)
     {
         return true;
-    } 
+    }
 }

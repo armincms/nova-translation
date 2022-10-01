@@ -2,12 +2,11 @@
 
 namespace Armincms\NovaTranslation\Nova\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Str;
 use Armincms\NovaTranslation\Translation;
+use Illuminate\Contracts\Validation\Rule;
 
 class UniqueKeys implements Rule
-{ 
+{
     /**
      * Determine if the validation rule passes.
      *
@@ -21,7 +20,7 @@ class UniqueKeys implements Rule
             'key' => $value,
             'group' => request('group') ?? '*',
             'namespace' => request('namespace') ?? '*',
-        ])->count() == 0; 
+        ])->count() == 0;
     }
 
     /**
