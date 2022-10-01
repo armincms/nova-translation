@@ -19,7 +19,7 @@
     "extra": {
         "laravel": {
             "providers": [ 
-                "Armincms\\NovaTranslation\\NovaTranslationServiceProvider"
+                "Armincms\\NovaTranslation\\ServiceProvider"
             ]
         }
     },
